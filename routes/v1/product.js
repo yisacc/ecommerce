@@ -58,17 +58,26 @@ router.get('/:id', hasPermissions(['view user']),productController.getProductByI
  *                  type: object
  *                  properties:
  *                      modelNumber:
- *                          type:string
+ *                          type: string
  *                      releaseDate:
- *                          type:date
+ *                          type: string
+ *                          format: date-time
+ * 
  *              primaryCategoryId:
  *                  type: string 
  *              categoryId:
  *                  type: array
+ *                  items:
+ *                      type: string
+ *              tag:
+ *                  type: array
+ *                  items:
+ *                      type: string
  *          required:
  *              - productSKU
  *              - productTitle
  *              - productDescription
+ *              - primaryCategoryId
  *    responses:
  *      '201':
  *        description: Created

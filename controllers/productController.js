@@ -1,7 +1,7 @@
 const mongoose =require('mongoose');
 const { ProductSchema } =require('../models/productModel');
 
-const Product = mongoose.model('Variations', ProductSchema);
+const Product = mongoose.model('Products', ProductSchema);
 
 exports.addNewProduct = (req, res, next) => {
   let newProduct = new Product({
@@ -37,13 +37,40 @@ exports.getProductById = (req, res, next) => {
   }
 };
 exports.fetchProducts = async (req, res) => {
- 
+    try {
 
-    Product.find()
-    .then((variations) => {
-      res.json(variations);
-    })
-    .catch((err) => res.send(err));
+        let sort = {}
+        if(req.query.sort) {
+            sort[req.query.sort] = req.query.asc ? 1 :-1 
+        }
+
+        let query = {}
+
+        if(req.query.filter) {
+            let filter = JSON.parse(req.query.filter);
+            
+            query = pick(filter, ['product_sku', 'product_title', 'product_description']) 
+            
+        }
+        
+        const options = {
+            sort: Object.values(sort).length > 0 ? sort: {
+                'created_at': -1
+            },
+            page: req.query.page || 1,
+            limit: req.query.limit || 10,
+            populate: { path: 'Categories'}
+        }
+        const Products = await Product.paginate(query,options)
+
+        res.json(Products)
+
+    } catch (error) {
+        res.status(400).json({
+            error: true,
+            message: error.message
+        })
+    }
 };
 exports.editProduct = (req, res) => {
     Product.findById(req.query.productId, function (err, variation) {
