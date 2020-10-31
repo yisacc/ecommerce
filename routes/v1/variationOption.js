@@ -1,28 +1,28 @@
 var router = require("express-promise-router")();
 
 const { hasPermissions } = require('../../middlewares/auth');
-const variationController = require('../../controllers/variationController');
+const variationOptionController = require('../../controllers/variationOptionController');
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/variationOption:
  *  get:
  *    tags:
- *     - Variation
- *    description: Products Variation
+ *     - Variation Option
+ *    description: Products Variation Option
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),variationController.fetchVariations);
+router.get('/', hasPermissions(['view any user', 'view user']),variationOptionController.fetchVariationOptions);
 
 /**
  * @swagger
- * /v1/variation/:id:
+ * /v1/variationOption/:id:
  *  get:
  *    tags:
- *      - Variation
- *    description: Get Products Variation By Id
+ *      - Variation Option
+ *    description: Get Products Variation Option By Id
  *    parameters:
  *    - name: id
  *      description: id to view
@@ -33,39 +33,42 @@ router.get('/', hasPermissions(['view any user', 'view user']),variationControll
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),variationController.getVariationById);
+router.get('/:id', hasPermissions(['view user']),variationOptionController.getVariationOptionById);
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/variationOption:
  *  post:
  *    tags:
- *      - Variation
- *    description: Create Products Variation
+ *      - Variation Option
+ *    description: Create Products Variation Option
  *    parameters:
  *    - name: reqBody
  *      in: body
  *      schema:
  *          type: object
  *          properties:
- *              variationName:
+ *              optionName:
  *                  type: string 
+ *              variationId:
+ *                  type: string
  *          required:
- *              - variationName
+ *              - optionName
+ *              - variationId
  *    responses:
  *      '201':
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), variationController.addNewVariation);
+router.post('/', hasPermissions(['create user']), variationOptionController.addNewVariationOption);
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/variationOption:
  *  put:
  *    tags:
- *      - Variation
- *    description: Edit Products Variation
+ *      - Variation Option
+ *    description: Edit Products Variation Option
  *    parameters:
  *    - name: id
  *      description: id to update
@@ -77,23 +80,23 @@ router.post('/', hasPermissions(['create user']), variationController.addNewVari
  *      schema:
  *          type: object
  *          properties:
- *              variationName:
+ *              optionName:
  *                  type: string 
- *          required:
- *              - variationName
+ *              variationId:
+ *                  type: string
  *    responses:
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), variationController.editVariation);
+router.put('/:id', hasPermissions(['update user']), variationOptionController.editVariationOption);
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/variationOption:
  *  delete:
  *    tags:
- *      - Variation
- *    description: Delete Products Variation
+ *      - Variation Option
+ *    description: Create Products Variation Option
  *    parameters:
  *    - name: id
  *      description: id to delete
@@ -105,6 +108,6 @@ router.put('/:id', hasPermissions(['update user']), variationController.editVari
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),variationController.deleteVariation);
+router.delete('/:id', hasPermissions(['remove user']),variationOptionController.deleteVariationOption);
 
 module.exports = router;

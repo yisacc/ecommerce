@@ -1,28 +1,28 @@
 var router = require("express-promise-router")();
 
 const { hasPermissions } = require('../../middlewares/auth');
-const variationController = require('../../controllers/variationController');
+const subCategoryController = require('../../controllers/subCategoryController');
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/subCategory:
  *  get:
  *    tags:
- *     - Variation
- *    description: Products Variation
+ *     - Sub Category
+ *    description: Products Sub Category
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),variationController.fetchVariations);
+router.get('/', hasPermissions(['view any user', 'view user']),subCategoryController.fetchSubCategories);
 
 /**
  * @swagger
- * /v1/variation/:id:
+ * /v1/subCategory/:id:
  *  get:
  *    tags:
- *      - Variation
- *    description: Get Products Variation By Id
+ *      - Sub Category
+ *    description: Get Products Sub Category By Id
  *    parameters:
  *    - name: id
  *      description: id to view
@@ -33,39 +33,42 @@ router.get('/', hasPermissions(['view any user', 'view user']),variationControll
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),variationController.getVariationById);
+router.get('/:id', hasPermissions(['view user']),subCategoryController.getSubCategoryById);
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/subCategory:
  *  post:
  *    tags:
- *      - Variation
- *    description: Create Products Variation
+ *      - Sub Category
+ *    description: Create Products Sub Category
  *    parameters:
  *    - name: reqBody
  *      in: body
  *      schema:
  *          type: object
  *          properties:
- *              variationName:
+ *              subCategoryName:
  *                  type: string 
+ *              categoryId:
+ *                  type: string
  *          required:
- *              - variationName
+ *              - subCategoryName
+ *              - categoryId
  *    responses:
  *      '201':
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), variationController.addNewVariation);
+router.post('/', hasPermissions(['create user']), subCategoryController.addNewSubCategory);
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/subCategory:
  *  put:
  *    tags:
- *      - Variation
- *    description: Edit Products Variation
+ *      - Sub Category
+ *    description: Edit Products category
  *    parameters:
  *    - name: id
  *      description: id to update
@@ -77,23 +80,23 @@ router.post('/', hasPermissions(['create user']), variationController.addNewVari
  *      schema:
  *          type: object
  *          properties:
- *              variationName:
+ *              subCategoryName:
  *                  type: string 
- *          required:
- *              - variationName
+ *              categoryId:
+ *                  type: string
  *    responses:
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), variationController.editVariation);
+router.put('/:id', hasPermissions(['update user']), subCategoryController.editSubCategory);
 
 /**
  * @swagger
- * /v1/variation:
+ * /v1/subCategory:
  *  delete:
  *    tags:
- *      - Variation
- *    description: Delete Products Variation
+ *      - Sub Category
+ *    description: Delete Products category
  *    parameters:
  *    - name: id
  *      description: id to delete
@@ -105,6 +108,6 @@ router.put('/:id', hasPermissions(['update user']), variationController.editVari
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),variationController.deleteVariation);
+router.delete('/:id', hasPermissions(['remove user']),subCategoryController.deleteSubCategory);
 
 module.exports = router;

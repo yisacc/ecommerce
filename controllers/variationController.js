@@ -4,16 +4,16 @@ const { VariationSchema } =require('../models/variationModel');
 const Variation = mongoose.model('Variations', VariationSchema);
 
 exports.addNewVariation = (req, res, next) => {
-  let newJob = new Variation({
+  let newVariation = new Variation({
     _id: new mongoose.Types.ObjectId(),
     variation_name: req.body.variationName,
     created_at: new Date(),
   });
-  newJob.save((err, newJob) => {
+  newVariation.save((err, newVariation) => {
     if (err) {
       res.send(err);
     }
-    res.json(newJob);
+    res.json(newVariation);
   });
 };
 
@@ -21,8 +21,8 @@ exports.getVariationById = (req, res, next) => {
     const variationId=req.query.variationId;
   if (variationId) {
     Variation.find({ _id: variationId })
-      .then((job) => {
-        res.json(job);
+      .then((variation) => {
+        res.json(variation);
       })
       .catch((err) => res.send(err));
   } else {
@@ -39,7 +39,7 @@ exports.fetchVariations = async (req, res) => {
     .catch((err) => res.send(err));
 };
 exports.editVariation = (req, res) => {
-    Variation.findById(req.query.variationId, function (err, job) {
+    Variation.findById(req.query.variationId, function (err, variation) {
     if (!variation) {
       return next(new Error('Could not load Document'));
     } else {

@@ -6,7 +6,7 @@ const userController = require('../../controllers/userControllers');
 
 /**
  * @swagger
- * /v1//users:
+ * /v1/users:
  *  get:
  *    description: Ecommerce API
  *    responses:

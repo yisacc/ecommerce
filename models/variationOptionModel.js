@@ -1,5 +1,4 @@
 
-const { string, number } = require('joi');
 const mongoose = require('mongoose');
 
 
