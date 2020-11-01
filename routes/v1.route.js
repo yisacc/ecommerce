@@ -10,6 +10,8 @@ const categoryRouter=require('./v1/category');
 const productRouter=require('./v1/product');
 const subCategoryRouter=require('./v1/subCategory');
 const productTagRouter=require('./v1/tag');
+const productReviewRouter=require('./v1/productReview');
+const productVarietyRouter=require('./v1/productVariety');
 
 
 
@@ -22,5 +24,7 @@ router.use('/category', categoryRouter);
 router.use('/subCategory',subCategoryRouter);
 router.use('/product', productRouter);
 router.use('/productTag', productTagRouter);
+router.use('/productReview', productReviewRouter);
+router.use('/productVariety', productVarietyRouter);
 
 module.exports = router;

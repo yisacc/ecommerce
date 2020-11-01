@@ -28,8 +28,8 @@ exports.getProductById = (req, res, next) => {
     const productId=req.query.productId;
   if (productId) {
     Product.find({ _id: productId })
-      .then((variation) => {
-        res.json(variation);
+      .then((product) => {
+        res.json(product);
       })
       .catch((err) => res.send(err));
   } else {
@@ -59,7 +59,7 @@ exports.fetchProducts = async (req, res) => {
             },
             page: req.query.page || 1,
             limit: req.query.limit || 10,
-            populate: { path: 'Categories'}
+            populate: ('sub_category_name')
         }
         const Products = await Product.paginate(query,options)
 
@@ -73,8 +73,8 @@ exports.fetchProducts = async (req, res) => {
     }
 };
 exports.editProduct = (req, res) => {
-    Product.findById(req.query.productId, function (err, variation) {
-    if (!variation) {
+    Product.findById(req.query.productId, function (err, product) {
+    if (!product) {
       return next(new Error('Could not load Document'));
     } else {
         product.updatedDate = new Date();

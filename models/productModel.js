@@ -7,6 +7,8 @@ const ProductSchema = new mongoose.Schema({
     product_sku:{type:String,unique: true,required: true},
     product_title:{type:String,required: true},
     product_description:{type:String,required: true},
+    total_reviews:{type:Number},
+    average_review:{type:Number},
     manufacture_details: {
         model_number: {type:String},
         release_date: {type:Date}
