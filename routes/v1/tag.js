@@ -14,7 +14,7 @@ const tagController = require('../../controllers/productTagController');
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),tagController.fetchTags);
+router.get('/', hasPermissions(['view any productTag', 'view productTag']),tagController.fetchTags);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/', hasPermissions(['view any user', 'view user']),tagController.fet
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),tagController.getTagById);
+router.get('/:id', hasPermissions(['view productTag']),tagController.getTagById);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ router.get('/:id', hasPermissions(['view user']),tagController.getTagById);
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), tagController.addNewTag);
+router.post('/', hasPermissions(['create productTag']), tagController.addNewTag);
 
 /**
  * @swagger
@@ -85,7 +85,7 @@ router.post('/', hasPermissions(['create user']), tagController.addNewTag);
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), tagController.editTag);
+router.put('/:id', hasPermissions(['update productTag']), tagController.editTag);
 
 /**
  * @swagger
@@ -105,6 +105,6 @@ router.put('/:id', hasPermissions(['update user']), tagController.editTag);
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),tagController.deleteTag);
+router.delete('/:id', hasPermissions(['remove productTag']),tagController.deleteTag);
 
 module.exports = router;

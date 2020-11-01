@@ -14,7 +14,7 @@ const productVarietyController = require('../../controllers/ProductVarietyContro
  *      '200':
  *        description: A successful response
  */
-router.get('/getProductVarieties', hasPermissions(['view any user', 'view user']),productVarietyController.fetchProductVarieties);
+router.get('/getProductVarieties', hasPermissions(['view any product variety', 'view product variety']),productVarietyController.fetchProductVarieties);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/getProductVarieties', hasPermissions(['view any user', 'view user']
  *      '201':
  *        description: A successful response
  */
-router.get('/getProductVarietyById', hasPermissions(['view user']),productVarietyController.getProductVarietyById);
+router.get('/getProductVarietyById', hasPermissions(['view product variety']),productVarietyController.getProductVarietyById);
 
 /**
  * @swagger
@@ -90,7 +90,7 @@ router.get('/getProductVarietyById', hasPermissions(['view user']),productVariet
  *        description: Created
  */
 
-router.post('/createProductVariety', hasPermissions(['create user']), productVarietyController.addNewProductVariety);
+router.post('/createProductVariety', hasPermissions(['create product variety']), productVarietyController.addNewProductVariety);
 
 /**
  * @swagger
@@ -146,7 +146,7 @@ router.post('/createProductVariety', hasPermissions(['create user']), productVar
  *      '201':
  *        description: Updated
  */
-router.put('/editProductVariety', hasPermissions(['update user']), productVarietyController.editProductVariety);
+router.put('/editProductVariety', hasPermissions(['update product variety']), productVarietyController.editProductVariety);
 
 /**
  * @swagger
@@ -166,6 +166,6 @@ router.put('/editProductVariety', hasPermissions(['update user']), productVariet
  *        description: Deleted
  */
 
-router.delete('/deleteProductVariety', hasPermissions(['remove user']),productVarietyController.deleteProductVariety);
+router.delete('/deleteProductVariety', hasPermissions(['remove product variety']),productVarietyController.deleteProductVariety);
 
 module.exports = router;

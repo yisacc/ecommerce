@@ -14,7 +14,7 @@ const categoryController = require('../../controllers/categoryController');
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),categoryController.fetchCategories);
+router.get('/', hasPermissions(['view any category', 'view category']),categoryController.fetchCategories);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/', hasPermissions(['view any user', 'view user']),categoryControlle
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),categoryController.getCategoryById);
+router.get('/:id', hasPermissions(['view category']),categoryController.getCategoryById);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ router.get('/:id', hasPermissions(['view user']),categoryController.getCategoryB
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), categoryController.addNewCategory);
+router.post('/', hasPermissions(['create category']), categoryController.addNewCategory);
 
 /**
  * @swagger
@@ -85,7 +85,7 @@ router.post('/', hasPermissions(['create user']), categoryController.addNewCateg
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), categoryController.editCategory);
+router.put('/:id', hasPermissions(['update category']), categoryController.editCategory);
 
 /**
  * @swagger
@@ -105,6 +105,6 @@ router.put('/:id', hasPermissions(['update user']), categoryController.editCateg
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),categoryController.deletecategory);
+router.delete('/:id', hasPermissions(['remove category']),categoryController.deletecategory);
 
 module.exports = router;

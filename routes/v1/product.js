@@ -14,7 +14,7 @@ const productController = require('../../controllers/productController');
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),productController.fetchProducts);
+router.get('/', hasPermissions(['view any product', 'view product']),productController.fetchProducts);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/', hasPermissions(['view any user', 'view user']),productController
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),productController.getProductById);
+router.get('/:id', hasPermissions(['view product']),productController.getProductById);
 
 /**
  * @swagger
@@ -85,7 +85,7 @@ router.get('/:id', hasPermissions(['view user']),productController.getProductByI
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), productController.addNewProduct);
+router.post('/', hasPermissions(['create product']), productController.addNewProduct);
 
 /**
  * @swagger
@@ -136,7 +136,7 @@ router.post('/', hasPermissions(['create user']), productController.addNewProduc
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), productController.editProduct);
+router.put('/:id', hasPermissions(['update product']), productController.editProduct);
 
 /**
  * @swagger
@@ -156,6 +156,6 @@ router.put('/:id', hasPermissions(['update user']), productController.editProduc
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),productController.deleteProduct);
+router.delete('/:id', hasPermissions(['remove product']),productController.deleteProduct);
 
 module.exports = router;

@@ -14,7 +14,7 @@ const variationController = require('../../controllers/variationController');
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),variationController.fetchVariations);
+router.get('/', hasPermissions(['view any variation', 'view variation']),variationController.fetchVariations);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/', hasPermissions(['view any user', 'view user']),variationControll
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),variationController.getVariationById);
+router.get('/:id', hasPermissions(['view variation']),variationController.getVariationById);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ router.get('/:id', hasPermissions(['view user']),variationController.getVariatio
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), variationController.addNewVariation);
+router.post('/', hasPermissions(['create variation']), variationController.addNewVariation);
 
 /**
  * @swagger
@@ -85,7 +85,7 @@ router.post('/', hasPermissions(['create user']), variationController.addNewVari
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), variationController.editVariation);
+router.put('/:id', hasPermissions(['update variation']), variationController.editVariation);
 
 /**
  * @swagger
@@ -105,6 +105,6 @@ router.put('/:id', hasPermissions(['update user']), variationController.editVari
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),variationController.deleteVariation);
+router.delete('/:id', hasPermissions(['remove variation']),variationController.deleteVariation);
 
 module.exports = router;

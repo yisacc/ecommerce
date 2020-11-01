@@ -14,7 +14,7 @@ const subCategoryController = require('../../controllers/subCategoryController')
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),subCategoryController.fetchSubCategories);
+router.get('/', hasPermissions(['view any subCategory', 'view subCategory']),subCategoryController.fetchSubCategories);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/', hasPermissions(['view any user', 'view user']),subCategoryContro
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),subCategoryController.getSubCategoryById);
+router.get('/:id', hasPermissions(['view subCategory']),subCategoryController.getSubCategoryById);
 
 /**
  * @swagger
@@ -60,7 +60,7 @@ router.get('/:id', hasPermissions(['view user']),subCategoryController.getSubCat
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), subCategoryController.addNewSubCategory);
+router.post('/', hasPermissions(['create subCategory']), subCategoryController.addNewSubCategory);
 
 /**
  * @swagger
@@ -88,7 +88,7 @@ router.post('/', hasPermissions(['create user']), subCategoryController.addNewSu
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), subCategoryController.editSubCategory);
+router.put('/:id', hasPermissions(['update subCategory']), subCategoryController.editSubCategory);
 
 /**
  * @swagger
@@ -108,6 +108,6 @@ router.put('/:id', hasPermissions(['update user']), subCategoryController.editSu
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),subCategoryController.deleteSubCategory);
+router.delete('/:id', hasPermissions(['remove subCategory']),subCategoryController.deleteSubCategory);
 
 module.exports = router;

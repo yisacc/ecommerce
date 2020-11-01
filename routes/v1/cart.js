@@ -14,7 +14,7 @@ const cartController = require('../../controllers/cartController');
  *      '200':
  *        description: A successful response
  */
-router.get('/getCartItems', hasPermissions(['view any user', 'view user']),cartController.fetchCartItems);
+router.get('/getCartItems', hasPermissions(['view any cart', 'view cart']),cartController.fetchCartItems);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/getCartItems', hasPermissions(['view any user', 'view user']),cartC
  *      '201':
  *        description: A successful response
  */
-router.get('/getCartItemById', hasPermissions(['view user']),cartController.getItemFromCartById);
+router.get('/getCartItemById', hasPermissions(['view cart']),cartController.getItemFromCartById);
 
 /**
  * @swagger
@@ -64,7 +64,7 @@ router.get('/getCartItemById', hasPermissions(['view user']),cartController.getI
  *        description: Created
  */
 
-router.post('/addToCart', hasPermissions(['create user']), cartController.addToCart);
+router.post('/addToCart', hasPermissions(['create cart']), cartController.addToCart);
 
 
 /**
@@ -85,6 +85,6 @@ router.post('/addToCart', hasPermissions(['create user']), cartController.addToC
  *        description: Deleted
  */
 
-router.delete('/deleteCartItem', hasPermissions(['remove user']),cartController.deleteCartItem);
+router.delete('/deleteCartItem', hasPermissions(['remove cart']),cartController.deleteCartItem);
 
 module.exports = router;

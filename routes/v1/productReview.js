@@ -14,7 +14,7 @@ const productReviewController = require('../../controllers/productReviewControll
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any user', 'view user']),productReviewController.fetchProductReview);
+router.get('/', hasPermissions(['view any review', 'view review']),productReviewController.fetchProductReview);
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/', hasPermissions(['view any user', 'view user']),productReviewCont
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view user']),productReviewController.getProductReviewById);
+router.get('/:id', hasPermissions(['view review']),productReviewController.getProductReviewById);
 
 /**
  * @swagger
@@ -67,7 +67,7 @@ router.get('/:id', hasPermissions(['view user']),productReviewController.getProd
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create user']), productReviewController.addNewProductReview);
+router.post('/', hasPermissions(['create review']), productReviewController.addNewProductReview);
 
 /**
  * @swagger
@@ -101,7 +101,7 @@ router.post('/', hasPermissions(['create user']), productReviewController.addNew
  *      '201':
  *        description: Updated
  */
-router.put('/:id', hasPermissions(['update user']), productReviewController.editProductReview);
+router.put('/:id', hasPermissions(['update review']), productReviewController.editProductReview);
 
 /**
  * @swagger
@@ -121,7 +121,7 @@ router.put('/:id', hasPermissions(['update user']), productReviewController.edit
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove user']),productReviewController.deleteProductReview);
+router.delete('/:id', hasPermissions(['remove review']),productReviewController.deleteProductReview);
 
 /**
  * @swagger
@@ -148,6 +148,6 @@ router.delete('/:id', hasPermissions(['remove user']),productReviewController.de
  *      '201':
  *        description: Created
  */
-router.put('/vote/:id', hasPermissions(['remove user']),productReviewController.voteProductReview);
+router.put('/vote/:id', hasPermissions(['remove review']),productReviewController.voteProductReview);
 
 module.exports = router;
