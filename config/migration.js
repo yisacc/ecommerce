@@ -17,12 +17,6 @@ const permissions = [
     'update cart',
     'remove cart',
 
-    'create category',
-    'view any category',
-    'view category',
-    'update category',
-    'remove category',
-
     'create product',
     'view any product',
     'view product',
