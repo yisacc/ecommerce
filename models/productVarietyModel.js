@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 
 const ProductVarietySchema = new mongoose.Schema({
@@ -21,5 +22,6 @@ const ProductVarietySchema = new mongoose.Schema({
 
 })
 
-
+// plugins
+ProductVarietySchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('ProductVarieties', ProductVarietySchema);

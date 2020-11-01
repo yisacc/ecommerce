@@ -62,6 +62,8 @@ router.get('/:id', hasPermissions(['view user']),productController.getProductByI
  *                      releaseDate:
  *                          type: string
  *                          format: date-time
+ *              vendorName:
+ *                  type: string
  * 
  *              primaryCategoryId:
  *                  type: string 
@@ -103,10 +105,33 @@ router.post('/', hasPermissions(['create user']), productController.addNewProduc
  *      schema:
  *          type: object
  *          properties:
- *              variationName:
+ *              productSKU:
  *                  type: string 
- *          required:
- *              - variationName
+ *              productTitle:
+ *                  type: string 
+ *              productDescription:
+ *                  type: string 
+ *              manufactureDetails:
+ *                  type: object
+ *                  properties:
+ *                      modelNumber:
+ *                          type: string
+ *                      releaseDate:
+ *                          type: string
+ *                          format: date-time
+ *              vendorName:
+ *                  type: string
+ * 
+ *              primaryCategoryId:
+ *                  type: string 
+ *              categoryId:
+ *                  type: array
+ *                  items:
+ *                      type: string
+ *              tag:
+ *                  type: array
+ *                  items:
+ *                      type: string
  *    responses:
  *      '201':
  *        description: Updated

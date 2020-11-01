@@ -1,4 +1,5 @@
 
+const { string } = require('joi');
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
@@ -13,6 +14,7 @@ const ProductSchema = new mongoose.Schema({
         model_number: {type:String},
         release_date: {type:Date}
       },
+    vendor_name:{type:String},
     primary_category_id:{ type: mongoose.Schema.Types.ObjectId, ref: 'Categories',required: true },
     category_ids:[{type: mongoose.Schema.Types.ObjectId, ref: 'SubCategories'}],
     tags:[{type: mongoose.Schema.Types.ObjectId, ref: 'Tags'}],

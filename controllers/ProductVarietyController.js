@@ -54,13 +54,13 @@ exports.fetchProductVarieties = async (req, res) => {
         if(req.query.filter) {
             let filter = JSON.parse(req.query.filter);
             
-            query = pick(filter, ['product_sku', 'product_title', 'product_description']) 
+            query = pick(filter, ['option_id', 'product_id', 'total_stock']) 
             
         }
         
         const options = {
             sort: Object.values(sort).length > 0 ? sort: {
-                'created_at': -1
+                'price_history.sale': -1
             },
             page: req.query.page || 1,
             limit: req.query.limit || 10,
