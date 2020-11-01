@@ -60,7 +60,7 @@ exports.fetchProducts = async (req, res) => {
             },
             page: req.query.page || 1,
             limit: req.query.limit || 10,
-            populate: ('sub_category_name')
+            populate: { path: 'SubCategories'}
         }
         const Products = await Product.paginate(query,options)
 

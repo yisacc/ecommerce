@@ -1,5 +1,7 @@
 FROM node:12
 
+
+RUN mkdir -p /usr/src/app
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -16,7 +18,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 5000
+EXPOSE 8000
 
 
-CMD [ "node", "app.js" ]
+CMD [ "npm", "start" ]
