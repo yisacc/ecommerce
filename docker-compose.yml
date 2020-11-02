@@ -2,7 +2,6 @@ version: '3'
 services:
   ecommerce:
     image: ecommerce
-    restart: always
     build: .
     ports:
       - '5000:5000'
