@@ -16,11 +16,6 @@ exports.All = async (req, res) => {
 
         if(req.query.filter) {
             let filter = JSON.parse(req.query.filter);
-            // Object.keys(filter).forEach(index => {
-            //     if(typeof filter[index] !== 'string' || typeof filter[index] !== 'number') {
-            //         delete filter[index]
-            //     }
-            // }) 
             query = pick(filter, ['username', 'email', 'active']) 
             
         }
