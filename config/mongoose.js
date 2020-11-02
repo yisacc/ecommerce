@@ -1,6 +1,8 @@
-const mongoose =require('mongoose');
+const mongoose = require('mongoose');
+const logger = require('./../config/logger');
+const { mongo, env } = require('./vars');
+
 const migration = require('../lib/migration.lib');
-const {mongo} = require('./vars');
 
 // set mongoose Promise to Bluebird
 mongoose.Promise = Promise;
@@ -11,10 +13,21 @@ mongoose.connection.on('error', (err) => {
   process.exit(-1);
 });
 
+// print mongoose logs in dev env
+if (env === 'development') {
+  mongoose.set('debug', true);
+}
 
+/**
+ * Connect to mongo db
+ *
+ * @returns {object} Mongoose connection
+ * @public
+ */
 exports.connect = () => {
+  console.log('mongodb://127.0.0.1:27017/ecommerce');
   mongoose
-    .connect('mongodb://localhost/ecommerce', {
+    .connect('mongodb://127.0.0.1:27017/ecommerce', {
       useCreateIndex: true,
       keepAlive: 1,
       useNewUrlParser: true,
@@ -22,18 +35,11 @@ exports.connect = () => {
       useFindAndModify: false,
     })
     .then(async () => {
-      console.log('mongoDB connected...');
-     
-        await migration.migratePermissions();
-      
-        await migration.migrateRoles();
-      
-        await migration.migrateUsers();
-      
-        
-      
-      
-      
+      console.log('mongoDB connected...')
+
+      await migration.migratePermissions()
+      await migration.migrateRoles()
+      await migration.migrateUsers()
     });
   return mongoose.connection;
 };
