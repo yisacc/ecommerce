@@ -62,7 +62,7 @@ router.get('/:id', hasPermissions(['view product']),productController.getProduct
  *                      releaseDate:
  *                          type: string
  *                          format: date-time
- *              vendorName:
+ *              vendorId:
  *                  type: string
  * 
  *              primaryCategoryId:
@@ -119,7 +119,7 @@ router.post('/', hasPermissions(['create product']), productController.addNewPro
  *                      releaseDate:
  *                          type: string
  *                          format: date-time
- *              vendorName:
+ *              vendorId:
  *                  type: string
  * 
  *              primaryCategoryId:

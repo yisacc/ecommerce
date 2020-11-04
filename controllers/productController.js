@@ -2,8 +2,8 @@ const mongoose =require('mongoose');
 const { ProductSchema } =require('../models/productModel');
 
 const Product = mongoose.model('Products', ProductSchema);
-
 exports.addNewProduct = (req, res, next) => {
+  
   let newProduct = new Product({
     _id: new mongoose.Types.ObjectId(),
     product_sku: req.body.productSKU,
@@ -11,8 +11,8 @@ exports.addNewProduct = (req, res, next) => {
     product_description: req.body.productDescription,
     manufacture_details:{model_number:req.body.manufactureDetails.modelNumber,
         release_date:req.body.manufactureDetails.releaseDate},
-    vendor_name:req.body.vendorName,
-    primary_category_id: req.body.primaryCategoryId,
+    vendor_id:req.body.vendorId,
+    primary_category_id:  req.body.primaryCategoryId,
     category_ids:req.body.categoryId,
     tags:req.body.tag,
     created_at: new Date(),
@@ -38,6 +38,7 @@ exports.getProductById = (req, res, next) => {
   }
 };
 exports.fetchProducts = async (req, res) => {
+
     try {
 
         let sort = {}
@@ -60,7 +61,7 @@ exports.fetchProducts = async (req, res) => {
             },
             page: req.query.page || 1,
             limit: req.query.limit || 10,
-            populate: { path: 'SubCategories', select: 'sub_category_name'}
+            populate: { path: 'primary_category_id',path: 'category_ids', path:'tags'}
         }
         const Products = await Product.paginate(query,options)
 
@@ -84,7 +85,7 @@ exports.editProduct = (req, res) => {
         product.product_description= req.body.productDescription,
         product.manufacture_details={model_number:req.body.manufactureDetails.modelNumber,
             release_date:req.body.manufactureDetails.releaseDate},
-        product.vendor_name=req.body.vendorName,
+        product.vendor_id=req.body.vendorId,
         product.primary_category_id= req.body.primaryCategoryId,
         product.category_ids=req.body.categoryId,
         product.tags=req.body.tag,

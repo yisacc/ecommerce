@@ -13,6 +13,7 @@ const productTagRouter=require('./v1/tag');
 const productReviewRouter=require('./v1/productReview');
 const productVarietyRouter=require('./v1/productVariety');
 const cartRouter=require('./v1/cart');
+const orderRouter=require('./v1/order');
 
 
 
@@ -28,5 +29,5 @@ router.use('/productTag', productTagRouter);
 router.use('/productReview', productReviewRouter);
 router.use('/productVariety', productVarietyRouter);
 router.use('/cart', cartRouter);
-
+router.use('/order', orderRouter);
 module.exports = router;

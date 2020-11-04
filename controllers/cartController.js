@@ -12,14 +12,7 @@ exports.addToCart = (req, res, next) => {
         } else if(productVariety.total_stock < req.body.totalStock) {
             return next(new Error('We do not have the requested amount'));
         }else{
-          productVariety.updatedDate = new Date();
-          productVariety.total_stock=productVariety.total_stock-req.body.quantity,
-            
-            
-          productVariety.save(function (err) {
-            if (err) {
-              res.send(err);
-            } else {
+
                 let newCart = new Cart({
                     _id: new mongoose.Types.ObjectId(),
                     quantity: req.body.quantity,
@@ -33,8 +26,7 @@ exports.addToCart = (req, res, next) => {
                     }
                     res.json(newCart);
                   });
-            }
-          });
+            
           
         }
       });

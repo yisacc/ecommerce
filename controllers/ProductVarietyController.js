@@ -60,11 +60,11 @@ exports.fetchProductVarieties = async (req, res) => {
         
         const options = {
             sort: Object.values(sort).length > 0 ? sort: {
-                'price_history.sale': -1
+                'price_history.sale': 1
             },
             page: req.query.page || 1,
             limit: req.query.limit || 10,
-            populate: { path: 'Categories'}
+            populate: { path: 'option_id',populate: {path: 'variation_id'},path: 'product_id'}
         }
         const ProductVarieties  = await ProductVariety.paginate(query,options)
 

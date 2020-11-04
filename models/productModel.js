@@ -14,10 +14,10 @@ const ProductSchema = new mongoose.Schema({
         model_number: {type:String},
         release_date: {type:Date}
       },
-    vendor_name:{type:String},
+    vendor_id:{ type: mongoose.Schema.Types.ObjectId, ref: 'User',required: true },
     primary_category_id:{ type: mongoose.Schema.Types.ObjectId, ref: 'Categories',required: true },
     category_ids:[{type: mongoose.Schema.Types.ObjectId, ref: 'SubCategories'}],
-    tags:[{type: mongoose.Schema.Types.ObjectId, ref: 'Tags'}],
+    tags:[{type: mongoose.Schema.Types.ObjectId, ref: 'ProductTags'}],
     created_at: { type: Date, default: new Date() },
     updated_at: { type: Date, default: new Date() }
 
