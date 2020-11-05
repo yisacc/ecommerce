@@ -1,30 +1,52 @@
 const mongoose =require('mongoose');
 const { OrderSchema } =require('../models/orderModel');
+const { ProductVarietySchema } =require('../models/productVarietyModel');
+const { CartSchema } =require('../models/cartModel');
 
 const Order = mongoose.model('Orders', OrderSchema);
+const ProductVariety = mongoose.model('ProductVarieties', ProductVarietySchema);
+
+
+const Cart = mongoose.model('Cart', CartSchema);
 
 exports.addNewOrder = (req, res, next) => {
-    productVariety.updatedDate = new Date();
-    productVariety.total_stock=productVariety.total_stock-req.body.quantity,
-      
-      
-    productVariety.save(function (err) {
-      if (err) {
-        res.send(err);
+Cart.findById(req.body.cartId,function (err,cart) {
+    if (!cart) {
+        return res.send('Could not load Document');
       } else {
-        let newOrder = new Order({
-            _id: new mongoose.Types.ObjectId(),
-            cart_id: req.body.cartId,
-            created_at: new Date(),
-          });
-          newOrder.save((err, newOrder) => {
-            if (err) {
-              res.send(err);
-            }
-            res.json(newOrder);
-          });
+        ProductVariety.findById(cart.Product_variety_id,function (err,prodVar) {
+            if (!prodVar) {
+                return res.send('Could not load Document');
+              } else {
+                prodVar.total_stock=prodVar.total_stock-cart.quantity,
+                prodVar.save(function (err) {
+                    if (err) {
+                        res.send(err);
+                      } else {
+                        Cart.deleteOne({ _id: req.query.cartItemId }).then((cart)=>{
+                            let newOrder = new Order({
+                                _id: new mongoose.Types.ObjectId(),
+                                cart_id: req.body.cartId,
+                                created_at: new Date(),
+                              });
+                              newOrder.save((err, newOrder) => {
+                                if (err) {
+                                  res.send(err);
+                                }
+                                res.json(newOrder);
+                              });
+                        })
+                        .catch((error)=>{
+                            res.send(error);
+                        })
+                      }
+                })
+              }
+        })
       }
-    })
+})
+    
+    
 
 };
 

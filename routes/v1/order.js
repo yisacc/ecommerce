@@ -5,7 +5,7 @@ const orderController = require('../../controllers/orderController');
 
 /**
  * @swagger
- * /v1/order:
+ * /v1/order/getOrders:
  *  get:
  *    tags:
  *     - Order
@@ -14,12 +14,12 @@ const orderController = require('../../controllers/orderController');
  *      '200':
  *        description: A successful response
  */
-router.get('/', hasPermissions(['view any variation', 'view variation']),orderController.fetchOrders);
+router.get('/getOrders', hasPermissions(['view any variation', 'view variation']),orderController.fetchOrders);
 
 
 /**
  * @swagger
- * /v1/order:
+ * /v1/order/createOrder:
  *  post:
  *    tags:
  *      - Order
@@ -30,19 +30,19 @@ router.get('/', hasPermissions(['view any variation', 'view variation']),orderCo
  *      schema:
  *          type: object
  *          properties:
- *              variationName:
+ *              cartId:
  *                  type: string 
  *          required:
- *              - variationName
+ *              - cartId
  *    responses:
  *      '201':
  *        description: Created
  */
 
-router.post('/', hasPermissions(['create variation']), orderController.addNewOrder);
+router.post('/createOrder', hasPermissions(['create variation']), orderController.addNewOrder);
 /**
  * @swagger
- * /v1/order/:id:
+ * /v1/order/getOrderById/:id:
  *  get:
  *    tags:
  *      - Order
@@ -57,12 +57,12 @@ router.post('/', hasPermissions(['create variation']), orderController.addNewOrd
  *      '201':
  *        description: A successful response
  */
-router.get('/:id', hasPermissions(['view variation']),orderController.getOrderById);
+router.get('/getOrderById/:id', hasPermissions(['view variation']),orderController.getOrderById);
 
 
 /**
  * @swagger
- * /v1/order:
+ * /v1/order/cancelOrder/:id:
  *  delete:
  *    tags:
  *      - Order
@@ -78,6 +78,6 @@ router.get('/:id', hasPermissions(['view variation']),orderController.getOrderBy
  *        description: Deleted
  */
 
-router.delete('/:id', hasPermissions(['remove variation']),orderController.deleteOrder);
+router.delete('/cancelOrder/:id', hasPermissions(['remove variation']),orderController.deleteOrder);
 
 module.exports = router;
